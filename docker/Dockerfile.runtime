@@ -1,0 +1,13 @@
+# TrySpace FSW Dockerfile w/ Pre-built Files
+# https://github.com/TrySpaceOrg/tryspace-fsw
+#
+
+FROM tryspace-fsw:latest AS try-fsw-runtime-0
+LABEL maintainer="TrySpaceOrg" \
+      description="Runtime image for cFS-based FSW with Simulith"
+
+# Copy built FSW files into the image
+COPY build/exe/cpu1 /opt/fsw
+
+# Set working directory
+WORKDIR /opt/fsw

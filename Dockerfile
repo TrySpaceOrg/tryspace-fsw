@@ -1,0 +1,22 @@
+# TrySpace FSW Dockerfile
+# https://github.com/TrySpaceOrg/tryspace-fsw
+#
+# docker build -t tryspace-fsw .
+# docker run --rm -it tryspace-fsw
+#
+
+FROM debian:bookworm-slim AS try-fsw-0
+LABEL maintainer="TrySpaceOrg" \
+      description="Builder image for cFS-based FSW with Simulith"
+
+# Install required tools
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    build-essential \
+    cmake \
+    git \
+    libzmq3-dev \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# (Optional) Set up cross-compiler toolchain (example: LEON3)
+# RUN apt-get update && apt-get install -y gcc-sparc64-linux-gnu

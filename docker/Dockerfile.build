@@ -1,11 +1,8 @@
 # TrySpace FSW Dockerfile
 # https://github.com/TrySpaceOrg/tryspace-fsw
 #
-# docker build -t tryspace-fsw .
-# docker run --rm -it tryspace-fsw
-#
 
-FROM debian:bookworm-slim AS try-fsw-0
+FROM debian:bookworm-slim AS try-fsw-build-0
 LABEL maintainer="TrySpaceOrg" \
       description="Builder image for cFS-based FSW with Simulith"
 

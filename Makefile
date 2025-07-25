@@ -3,7 +3,7 @@
 
 export BUILDDIR ?= $(CURDIR)/build
 export BUILDTYPE ?= debug
-export CFS_APP_PATH = ../components
+export CFS_APP_PATH = ../comp
 export INSTALLPREFIX ?= exe
 export MISSION_DEFS ?= ./tryspace_defs
 export MISSIONCONFIG ?= ./tryspace

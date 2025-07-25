@@ -19,11 +19,23 @@ SET(SPACECRAFT_ID 0x17)
 # Example:
 list(APPEND MISSION_GLOBAL_APPLIST
     #
+    # Libraries
+    #
+        #cryptolib
+        hwlib
+        #io_lib
+
+    #
     # cFS Apps
     #
         ci_lab
         sch
         to_lab
+
+    #
+    # Components
+    #
+        demo
 )
 
 # FT_INSTALL_SUBDIR indicates where the black box test data files (lua scripts) should

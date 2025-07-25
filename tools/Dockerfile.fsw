@@ -2,7 +2,7 @@
 # https://github.com/TrySpaceOrg/tryspace-fsw
 #
 
-FROM tryspace-fsw:latest AS try-fsw-runtime-0
+FROM tryspace-lab:latest
 LABEL maintainer="TrySpaceOrg" \
       description="Runtime image for cFS-based FSW with Simulith"
 

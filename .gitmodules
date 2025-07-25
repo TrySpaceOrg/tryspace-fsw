@@ -26,3 +26,7 @@
 	path = tools/elf2cfetbl
 	url = https://github.com/TrySpaceOrg/tryspace-ext-elf2cfetbl.git
 	branch = main
+[submodule "apps/hwlib"]
+	path = apps/hwlib
+	url = https://github.com/TrySpaceOrg/tryspace-ext-hwlib.git
+	branch = main

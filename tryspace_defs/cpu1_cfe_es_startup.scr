@@ -1,3 +1,4 @@
+CFE_APP, sch,         SCH_AppMain,        SCH,          40,   16384, 0x0, 0;
 CFE_APP, ci_lab,      CI_LAB_AppMain,     CI_LAB_APP,   60,   16384, 0x0, 0;
 CFE_APP, to_lab,      TO_LAB_AppMain,     TO_LAB_APP,   70,   16384, 0x0, 0;
 

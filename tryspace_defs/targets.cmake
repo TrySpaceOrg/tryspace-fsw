@@ -22,7 +22,7 @@ list(APPEND MISSION_GLOBAL_APPLIST
     # cFS Apps
     #
         ci_lab
-        #sch
+        sch
         to_lab
 )
 

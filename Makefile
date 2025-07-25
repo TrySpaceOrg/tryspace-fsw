@@ -28,7 +28,7 @@ endif
 all: build
 
 build:
-	docker run --rm -it -v $(TOPDIR):$(TOPDIR) --name "tryspace_fsw_build" -w $(CURDIR) --sysctl fs.mqueue.msg_max=10000 --ulimit rtprio=99 --cap-add=sys_nice $(BUILD_IMAGE_NAME) make -j build-fsw
+	docker run --rm -it -v $(TOPDIR):$(TOPDIR) --name "tryspace_fsw_build" -w $(CURDIR) --user $(shell id -u):$(shell id -g) --sysctl fs.mqueue.msg_max=10000 --ulimit rtprio=99 --cap-add=sys_nice $(BUILD_IMAGE_NAME) make -j build-fsw
 
 build-fsw:
 	mkdir -p $(BUILDDIR)
@@ -39,7 +39,7 @@ clean:
 	rm -rf $(BUILDDIR)
 
 debug:
-	docker run --rm -it -v $(TOPDIR):$(TOPDIR) --name "tryspace_fsw_debug" -w $(CURDIR) --sysctl fs.mqueue.msg_max=10000 --ulimit rtprio=99 --cap-add=sys_nice $(BUILD_IMAGE_NAME) /bin/bash
+	docker run --rm -it -v $(TOPDIR):$(TOPDIR) --name "tryspace_fsw_debug" -w $(CURDIR) --user $(shell id -u):$(shell id -g) --sysctl fs.mqueue.msg_max=10000 --ulimit rtprio=99 --cap-add=sys_nice $(BUILD_IMAGE_NAME) /bin/bash
 
 runtime:
 	$(MAKE) clean build

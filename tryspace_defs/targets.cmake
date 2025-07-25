@@ -7,7 +7,7 @@
 # The MISSION_NAME will be compiled into the target build data structure
 # as well as being passed to "git describe" to filter the tags when building
 # the version string.
-SET(MISSION_NAME "TrySpaceMission")
+SET(MISSION_NAME "TrySpace")
 
 # MDG dedication. September 16, 2023 changed us all. RIP.
 SET(SPACECRAFT_ID 0x17)

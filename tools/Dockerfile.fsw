@@ -3,11 +3,12 @@
 #
 
 FROM tryspace-lab:latest
-LABEL maintainer="TrySpaceOrg" \
-      description="Runtime image for cFS-based FSW with Simulith"
 
 # Copy built FSW files into the image
-COPY build/exe/cpu1 /opt/fsw
+COPY build/exe/cpu1 /app
 
 # Set working directory
-WORKDIR /opt/fsw
+WORKDIR /app
+
+# Set command to run
+CMD ["/app/core-cpu1"]

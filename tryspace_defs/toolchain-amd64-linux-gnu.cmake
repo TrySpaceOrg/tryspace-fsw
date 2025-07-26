@@ -20,4 +20,5 @@ SET(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE   NEVER)
 # These variable settings are specific to cFE/OSAL and determines which 
 # abstraction layers are built when using this toolchain
 SET(CFE_SYSTEM_PSPNAME      "pc-linux")
-SET(OSAL_SYSTEM_OSTYPE      "posix")
+SET(OSAL_SYSTEM_BSPTYPE     "tryspace-linux")
+SET(OSAL_SYSTEM_OSTYPE      "tryspace")

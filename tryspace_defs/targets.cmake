@@ -7,7 +7,7 @@
 # The MISSION_NAME will be compiled into the target build data structure
 # as well as being passed to "git describe" to filter the tags when building
 # the version string.
-SET(MISSION_NAME "TrySpaceMission")
+SET(MISSION_NAME "TrySpace")
 
 # MDG dedication. September 16, 2023 changed us all. RIP.
 SET(SPACECRAFT_ID 0x17)
@@ -19,11 +19,23 @@ SET(SPACECRAFT_ID 0x17)
 # Example:
 list(APPEND MISSION_GLOBAL_APPLIST
     #
+    # Libraries
+    #
+        #cryptolib
+        hwlib
+        #io_lib
+
+    #
     # cFS Apps
     #
         ci_lab
-        #sch
+        sch
         to_lab
+
+    #
+    # Components
+    #
+        demo
 )
 
 # FT_INSTALL_SUBDIR indicates where the black box test data files (lua scripts) should

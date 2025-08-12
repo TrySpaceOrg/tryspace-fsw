@@ -32,8 +32,8 @@
  *
  */
 
-#ifndef SAMPLE_PERFIDS_H
-#define SAMPLE_PERFIDS_H
+#ifndef TRYSPACE_PERFIDS_H
+#define TRYSPACE_PERFIDS_H
 
 #define CFE_MISSION_ES_PERF_EXIT_BIT 31 /**< \brief bit (31) is reserved by the perf utilities */
 
@@ -56,4 +56,4 @@
 
 /** \} */
 
-#endif /* SAMPLE_PERFIDS_H */
+#endif /* TRYSPACE_PERFIDS_H */

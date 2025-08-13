@@ -1620,13 +1620,14 @@
 **  \par Limits
 **       Only applies if #CFE_PLATFORM_TIME_CFG_SERVER is set to true.
 */
-#define CFE_PLATFORM_TIME_CFG_SOURCE true
+#define CFE_PLATFORM_TIME_CFG_SOURCE false
 
 /**
 **  \cfetimecfg Choose the External Time Source for Server only
 **
 **  \par Description:
 **       If #CFE_PLATFORM_TIME_CFG_SOURCE is set to true, then one of the following external time
+**       source types must also be set to true.  Do not set any of the external time
 **       source types must also be set to true.  Do not set any of the external time
 **       source types to true unless #CFE_PLATFORM_TIME_CFG_SOURCE is set to true.
 **
@@ -1638,7 +1639,7 @@
 */
 #define CFE_PLATFORM_TIME_CFG_SRC_MET  false
 #define CFE_PLATFORM_TIME_CFG_SRC_GPS  false
-#define CFE_PLATFORM_TIME_CFG_SRC_TIME true
+#define CFE_PLATFORM_TIME_CFG_SRC_TIME false
 
 /**
 **  \cfetimecfg Define the Max Delta Limits for Time Servers using an Ext Time Source

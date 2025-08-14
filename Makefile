@@ -4,6 +4,7 @@
 export BUILDDIR ?= $(CURDIR)/build
 export BUILDTYPE ?= debug
 export CFS_APP_PATH = ../comp
+export COVDIR ?= $(BUILDDIR)/amd64-linux/default_cpu1
 export INSTALLPREFIX ?= exe
 export MISSION_DEFS ?= ./tryspace_defs
 export MISSIONCONFIG ?= ./tryspace
@@ -34,6 +35,18 @@ build-fsw:
 	mkdir -p $(BUILDDIR)
 	cd $(BUILDDIR) && cmake $(PREP_OPTS) ../cfe
 	$(MAKE) --no-print-directory -C $(BUILDDIR) mission-install
+
+build-test:
+	mkdir -p $(BUILDDIR)
+	cd $(BUILDDIR) && cmake $(PREP_OPTS) -DENABLE_UNIT_TESTS=true ../cfe
+	$(MAKE) --no-print-directory -C $(BUILDDIR) mission-install
+	cd $(COVDIR) && ctest -O ctest.log
+	lcov -c --directory . --output-file $(COVDIR)/coverage.info
+	genhtml $(COVDIR)/coverage.info --output-directory $(COVDIR)/report
+	@echo ""
+	@echo "Review coverage report: "
+	@echo "  firefox $(COVDIR)/report/index.html"
+	@echo ""
 
 clean:
 	rm -rf $(BUILDDIR)

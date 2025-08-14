@@ -2,7 +2,7 @@
 # https://github.com/TrySpaceOrg/tryspace-fsw
 #
 
-FROM tryspace-lab:latest
+FROM tryspaceorg/tryspace-lab:latest
 
 # Copy built FSW files into the image
 COPY build/exe/cpu1 /app

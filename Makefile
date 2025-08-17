@@ -10,7 +10,7 @@ export MISSION_DEFS ?= ./tryspace_defs
 export MISSIONCONFIG ?= ./tryspace
 export TOPDIR ?= $(CURDIR)/..
 
-export BUILD_IMAGE ?= tryspaceorg/tryspace-lab
+export BUILD_IMAGE ?= tryspaceorg/tryspace-lab:0.0.0
 export RUNTIME_FSW_IMAGE_NAME ?= tryspace-fsw
 
 # The "prep" step requires extra options that are specified via environment variables

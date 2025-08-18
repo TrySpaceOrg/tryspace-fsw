@@ -1,0 +1,14 @@
+# TrySpace FSW Dockerfile w/ Pre-built Files
+# https://github.com/TrySpaceOrg/tryspace-fsw
+#
+
+FROM tryspaceorg/tryspace-lab:0.0.0
+
+# Copy built FSW files into the image
+COPY build/exe/cpu1 /app
+
+# Set working directory
+WORKDIR /app
+
+# Set command to run
+CMD ["/app/core-cpu1"]

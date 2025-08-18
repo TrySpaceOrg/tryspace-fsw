@@ -10,8 +10,13 @@ export MISSION_DEFS ?= ./tryspace_defs
 export MISSIONCONFIG ?= ./tryspace
 export TOPDIR ?= $(CURDIR)/..
 
-export BUILD_IMAGE ?= tryspaceorg/tryspace-lab
+export BUILD_IMAGE ?= tryspaceorg/tryspace-lab:0.0.0
 export RUNTIME_FSW_IMAGE_NAME ?= tryspace-fsw
+
+# Determine number of parallel jobs to avoid maxing out low-power systems (Raspberry Pi etc.).
+# Use `nproc - 1` but ensure at least 1 job.
+NPROC := $(shell nproc 2>/dev/null || echo 1)
+JOBS := $(shell if [ $(NPROC) -le 1 ]; then echo 1; else expr $(NPROC) - 1; fi)
 
 # The "prep" step requires extra options that are specified via environment variables
 PREP_OPTS :=
@@ -29,7 +34,7 @@ endif
 all: build
 
 build:
-	docker run --rm -it -v $(TOPDIR):$(TOPDIR) --name "tryspace_fsw_build" -w $(CURDIR) --user $(shell id -u):$(shell id -g) --sysctl fs.mqueue.msg_max=10000 --ulimit rtprio=99 --cap-add=sys_nice $(BUILD_IMAGE) make -j build-fsw
+	docker run --rm -it -v $(TOPDIR):$(TOPDIR) --name "tryspace_fsw_build" -w $(CURDIR) --user $(shell id -u):$(shell id -g) --sysctl fs.mqueue.msg_max=10000 --ulimit rtprio=99 --cap-add=sys_nice $(BUILD_IMAGE) make -j$(JOBS) build-fsw
 
 build-fsw:
 	mkdir -p $(BUILDDIR)

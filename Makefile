@@ -1,5 +1,5 @@
 # Makefile for TrySpace FSW development
-.PHONY: all build clean debug runtime start stop
+.PHONY: all build clean debug runtime start stop test
 
 export BUILDDIR ?= $(CURDIR)/build
 export BUILDTYPE ?= debug
@@ -45,7 +45,7 @@ build-test:
 	mkdir -p $(BUILDDIR)
 	cd $(BUILDDIR) && cmake $(PREP_OPTS) -DENABLE_UNIT_TESTS=true ../cfe
 	$(MAKE) --no-print-directory -C $(BUILDDIR) mission-install
-	cd $(COVDIR) && ctest -O ctest.log
+	cd $(COVDIR) && ctest --output-on-failure -O ctest.log
 	lcov -c --directory . --output-file $(COVDIR)/coverage.info
 	genhtml $(COVDIR)/coverage.info --output-directory $(COVDIR)/report
 	@echo ""
@@ -68,3 +68,6 @@ start:
 
 stop:
 	docker ps --filter name=tryspace-* --filter status=running -aq | xargs docker stop
+
+test:
+	docker run --rm -it -v $(TOPDIR):$(TOPDIR) --name "tryspace_fsw_build" -w $(CURDIR) --user $(shell id -u):$(shell id -g) --sysctl fs.mqueue.msg_max=10000 --ulimit rtprio=99 --cap-add=sys_nice $(BUILD_IMAGE) make -j$(JOBS) build-test

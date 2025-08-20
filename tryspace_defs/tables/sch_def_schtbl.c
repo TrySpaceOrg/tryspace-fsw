@@ -98,9 +98,9 @@ SCH_ScheduleEntry_t SCH_DefaultScheduleTable[SCH_TABLE_ENTRIES] =
   {  SCH_UNUSED,   0,      0,  0, 0,  SCH_GROUP_NONE},
   
   /* slot #1 */
-  {  SCH_ENABLED,  SCH_ACTIVITY_SEND_MSG, 30, 11, 39, SCH_GROUP_CFE_HK },   /* EVS NOOP */
-  {  SCH_ENABLED,  SCH_ACTIVITY_SEND_MSG, 30, 21, 40, SCH_GROUP_CFE_HK },   /* Demo HK Request */
-  {  SCH_UNUSED,   0,      0,  0, 0,  SCH_GROUP_NONE},
+  {  SCH_ENABLED,  SCH_ACTIVITY_SEND_MSG, 30, 1, 39, SCH_GROUP_CFE_HK },   /* EVS NOOP */
+  {  SCH_ENABLED,  SCH_ACTIVITY_SEND_MSG, 30, 11, 40, SCH_GROUP_CFE_HK },   /* Demo HK Request */
+  {  SCH_ENABLED,  SCH_ACTIVITY_SEND_MSG, 30, 21, 41, SCH_GROUP_CFE_HK },   /* EPS HK Request */
   {  SCH_UNUSED,   0,      0,  0, 0,  SCH_GROUP_NONE},
   {  SCH_UNUSED,   0,      0,  0, 0,  SCH_GROUP_NONE},
     

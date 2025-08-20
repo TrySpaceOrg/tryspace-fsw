@@ -36,6 +36,7 @@ list(APPEND MISSION_GLOBAL_APPLIST
     # Components
     #
         demo
+        eps
 )
 
 # Create Application Platform Include List

@@ -46,6 +46,7 @@
 
 /* Components*/
 #include "demo_msgids.h"
+#include "eps_msgids.h"
 
 
 /*************************************************************************
@@ -212,8 +213,8 @@ SCH_MessageEntry_t SCH_DefaultMessageTable[SCH_MAX_MESSAGES] =
 
     /* command ID #40 - Demo Request HK */
   { { CFE_MAKE_BIG16(DEMO_REQ_HK_MID),  CFE_MAKE_BIG16(0xC000), CFE_MAKE_BIG16(0x0001), 0x0000 } }, /* Demo HK Request */
-    /* command ID #41 */
-  { { CFE_MAKE_BIG16(SCH_UNUSED_MID) } },
+    /* command ID #41 - EPS Request HK */
+  { { CFE_MAKE_BIG16(EPS_REQ_HK_MID),  CFE_MAKE_BIG16(0xC000), CFE_MAKE_BIG16(0x0001), 0x0000 } }, /* EPS HK Request */
     /* command ID #42 */
   { { CFE_MAKE_BIG16(SCH_UNUSED_MID) } },
     /* command ID #43 */

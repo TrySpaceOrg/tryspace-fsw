@@ -47,6 +47,7 @@
 /* Components*/
 #include "demo_msgids.h"
 #include "eps_msgids.h"
+#include "radio_msgids.h"
 
 
 /*************************************************************************
@@ -215,10 +216,10 @@ SCH_MessageEntry_t SCH_DefaultMessageTable[SCH_MAX_MESSAGES] =
   { { CFE_MAKE_BIG16(DEMO_REQ_HK_MID),  CFE_MAKE_BIG16(0xC000), CFE_MAKE_BIG16(0x0001), 0x0000 } }, /* Demo HK Request */
     /* command ID #41 - EPS Request HK */
   { { CFE_MAKE_BIG16(EPS_REQ_HK_MID),  CFE_MAKE_BIG16(0xC000), CFE_MAKE_BIG16(0x0001), 0x0000 } }, /* EPS HK Request */
-    /* command ID #42 */
-  { { CFE_MAKE_BIG16(SCH_UNUSED_MID) } },
-    /* command ID #43 */
-  { { CFE_MAKE_BIG16(SCH_UNUSED_MID) } },
+    /* command ID #42 - Radio Request HK */
+  { { CFE_MAKE_BIG16(RADIO_REQ_HK_MID),  CFE_MAKE_BIG16(0xC000), CFE_MAKE_BIG16(0x0001), 0x0000 } }, /* Radio HK Request */
+    /* command ID #43 - Radio Receive Data */
+  { { CFE_MAKE_BIG16(RADIO_CMD_MID),  CFE_MAKE_BIG16(0xC000), CFE_MAKE_BIG16(0x0001), 0x0005 } }, /* Radio Receive Data */
     /* command ID #44 */
   { { CFE_MAKE_BIG16(SCH_UNUSED_MID) } },  
     /* command ID #45 */

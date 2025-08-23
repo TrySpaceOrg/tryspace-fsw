@@ -8,7 +8,7 @@ export COVDIR ?= $(BUILDDIR)/amd64-linux/default_cpu1
 export INSTALLPREFIX ?= exe
 export MISSION_DEFS ?= ./tryspace_defs
 export MISSIONCONFIG ?= ./tryspace
-export TOPDIR ?= $(CURDIR)/..
+export TRYLABDIR ?= $(CURDIR)/..
 
 export BUILD_IMAGE ?= tryspaceorg/tryspace-lab:0.0.0
 export RUNTIME_FSW_IMAGE_NAME ?= tryspace-fsw
@@ -34,7 +34,7 @@ endif
 all: build
 
 build:
-	docker run --rm -it -v $(TOPDIR):$(TOPDIR) --name "tryspace_fsw_build" -w $(CURDIR) --user $(shell id -u):$(shell id -g) --sysctl fs.mqueue.msg_max=10000 --ulimit rtprio=99 --cap-add=sys_nice $(BUILD_IMAGE) make -j$(JOBS) build-fsw
+	docker run --rm -it -v $(TRYLABDIR):$(TRYLABDIR) --name "tryspace_fsw_build" -w $(CURDIR) --user $(shell id -u):$(shell id -g) --sysctl fs.mqueue.msg_max=10000 --ulimit rtprio=99 --cap-add=sys_nice $(BUILD_IMAGE) make -j$(JOBS) build-fsw
 
 build-fsw:
 	mkdir -p $(BUILDDIR)
@@ -57,7 +57,7 @@ clean:
 	rm -rf $(BUILDDIR)
 
 debug:
-	docker run --rm -it -v $(TOPDIR):$(TOPDIR) --name "tryspace_fsw_debug" -w $(CURDIR) --user $(shell id -u):$(shell id -g) --sysctl fs.mqueue.msg_max=10000 --ulimit rtprio=99 --cap-add=sys_nice $(BUILD_IMAGE) /bin/bash
+	docker run --rm -it -v $(TRYLABDIR):$(TRYLABDIR) --name "tryspace_fsw_debug" -w $(CURDIR) --user $(shell id -u):$(shell id -g) --sysctl fs.mqueue.msg_max=10000 --ulimit rtprio=99 --cap-add=sys_nice $(BUILD_IMAGE) /bin/bash
 
 runtime:
 	$(MAKE) clean build
@@ -70,4 +70,4 @@ stop:
 	docker ps --filter name=tryspace-* --filter status=running -aq | xargs docker stop
 
 test:
-	docker run --rm -it -v $(TOPDIR):$(TOPDIR) --name "tryspace_fsw_build" -w $(CURDIR) --user $(shell id -u):$(shell id -g) --sysctl fs.mqueue.msg_max=10000 --ulimit rtprio=99 --cap-add=sys_nice $(BUILD_IMAGE) make -j$(JOBS) build-test
+	docker run --rm -it -v $(TRYLABDIR):$(TRYLABDIR) --name "tryspace_fsw_build" -w $(CURDIR) --user $(shell id -u):$(shell id -g) --sysctl fs.mqueue.msg_max=10000 --ulimit rtprio=99 --cap-add=sys_nice $(BUILD_IMAGE) make -j$(JOBS) build-test

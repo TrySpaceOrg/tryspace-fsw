@@ -25,3 +25,13 @@ else()
   message (STATUS "OMIT_DEPRECATED=false: Deprecated elements included in build")
   set(MISSION_RESOURCEID_MODE "SIMPLE") # less type safe, but more backward compatible
 endif (OMIT_DEPRECATED)
+
+#
+# Set the CryptoLib FSW build flags for cFS use
+#
+set(CRYPTO_LIBGCRYPT ON CACHE BOOL "Cryptography Module - Libgcrypt" FORCE)
+set(KEY_INTERNAL ON CACHE BOOL "Key Module - Internal" FORCE)
+set(MC_INTERNAL ON CACHE BOOL "Monitoring and Control - Internal" FORCE)
+set(SA_FILE OFF CACHE BOOL "Save Security Association to File" FORCE)
+set(SA_INTERNAL ON CACHE BOOL "Security Association - Internal" FORCE)
+#set(DEBUG ON CACHE BOOL "CryptoLib Debug" FORCE)

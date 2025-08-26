@@ -21,9 +21,9 @@ list(APPEND MISSION_GLOBAL_APPLIST
     #
     # Libraries
     #
-        #cryptolib
+        cryptolib
         hwlib
-        #io_lib
+        io_lib
 
     #
     # cFS Apps
@@ -43,6 +43,7 @@ list(APPEND MISSION_GLOBAL_APPLIST
 # Create Application Platform Include List
 FOREACH(X ${MISSION_GLOBAL_APPLIST})
     LIST(APPEND APPLICATION_PLATFORM_INC_LIST ${${X}_MISSION_DIR}/inc)
+    LIST(APPEND APPLICATION_PLATFORM_INC_LIST ${${X}_MISSION_DIR}/include)
     LIST(APPEND APPLICATION_PLATFORM_INC_LIST ${${X}_MISSION_DIR}/mission_inc)
     LIST(APPEND APPLICATION_PLATFORM_INC_LIST ${${X}_MISSION_DIR}/platform_inc)
     LIST(APPEND APPLICATION_PLATFORM_INC_LIST ${${X}_MISSION_DIR}/public_inc)

@@ -10,7 +10,7 @@ export MISSION_DEFS ?= ./tryspace_defs
 export MISSIONCONFIG ?= ./tryspace
 export TRYLABDIR ?= $(CURDIR)/..
 
-export BUILD_IMAGE ?= tryspaceorg/tryspace-lab:0.0.0
+export BUILD_IMAGE ?= tryspaceorg/tryspace-lab:0.0.1
 export RUNTIME_FSW_IMAGE_NAME ?= tryspace-fsw
 
 # Determine number of parallel jobs to avoid maxing out low-power systems (Raspberry Pi etc.).

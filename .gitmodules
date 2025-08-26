@@ -30,3 +30,7 @@
 	path = apps/hwlib
 	url = https://github.com/TrySpaceOrg/tryspace-ext-hwlib.git
 	branch = main
+[submodule "apps/io_lib"]
+	path = apps/io_lib
+	url = https://github.com/TrySpaceOrg/tryspace-ext-iolib.git
+	branch = master

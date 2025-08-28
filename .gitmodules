@@ -1,3 +1,35 @@
+[submodule "apps/ci_lab"]
+	path = apps/ci_lab
+	url = https://github.com/TrySpaceOrg/tryspace-ext-ci-lab.git
+	branch = main
+[submodule "apps/ds"]
+	path = apps/ds
+	url = https://github.com/TrySpaceOrg/tryspace-ext-ds.git
+	branch = main
+[submodule "apps/hwlib"]
+	path = apps/hwlib
+	url = https://github.com/TrySpaceOrg/tryspace-ext-hwlib.git
+	branch = main
+[submodule "apps/lc"]
+	path = apps/lc
+	url = https://github.com/TrySpaceOrg/tryspace-ext-lc.git
+	branch = main
+[submodule "apps/io_lib"]
+	path = apps/io_lib
+	url = https://github.com/TrySpaceOrg/tryspace-ext-iolib.git
+	branch = master
+[submodule "apps/sc"]
+	path = apps/sc
+	url = https://github.com/TrySpaceOrg/tryspace-ext-sc.git
+	branch = main
+[submodule "apps/sch"]
+	path = apps/sch
+	url = https://github.com/TrySpaceOrg/tryspace-ext-sch.git
+	branch = master
+[submodule "apps/to_lab"]
+	path = apps/to_lab
+	url = https://github.com/TrySpaceOrg/tryspace-ext-to-lab.git
+	branch = main
 [submodule "cfe"]
 	path = cfe
 	url = https://github.com/TrySpaceOrg/tryspace-ext-cFE.git
@@ -10,27 +42,7 @@
 	path = psp
 	url = https://github.com/TrySpaceOrg/tryspace-ext-psp.git
 	branch = main
-[submodule "apps/to_lab"]
-	path = apps/to_lab
-	url = https://github.com/TrySpaceOrg/tryspace-ext-to-lab.git
-	branch = main
-[submodule "apps/ci_lab"]
-	path = apps/ci_lab
-	url = https://github.com/TrySpaceOrg/tryspace-ext-ci-lab.git
-	branch = main
-[submodule "apps/sch"]
-	path = apps/sch
-	url = https://github.com/TrySpaceOrg/tryspace-ext-sch.git
-	branch = master
 [submodule "tools/elf2cfetbl"]
 	path = tools/elf2cfetbl
 	url = https://github.com/TrySpaceOrg/tryspace-ext-elf2cfetbl.git
 	branch = main
-[submodule "apps/hwlib"]
-	path = apps/hwlib
-	url = https://github.com/TrySpaceOrg/tryspace-ext-hwlib.git
-	branch = main
-[submodule "apps/io_lib"]
-	path = apps/io_lib
-	url = https://github.com/TrySpaceOrg/tryspace-ext-iolib.git
-	branch = master

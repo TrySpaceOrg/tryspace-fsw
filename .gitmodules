@@ -46,3 +46,11 @@
 	path = tools/elf2cfetbl
 	url = https://github.com/TrySpaceOrg/tryspace-ext-elf2cfetbl.git
 	branch = main
+[submodule "apps/cf"]
+	path = apps/cf
+	url = https://github.com/TrySpaceOrg/tryspace-ext-cf.git
+	branch = main
+[submodule "apps/fm"]
+	path = apps/fm
+	url = https://github.com/TrySpaceOrg/tryspace-ext-fm.git
+	branch = main

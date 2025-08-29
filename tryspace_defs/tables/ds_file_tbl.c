@@ -58,7 +58,7 @@ DS_DestFileTable_t DS_DestFileTable = {
         {
             /* .Movename      = */ DS_EMPTY_STRING,
             /* .Pathname      = */ "/d",
-            /* .Basename      = */ "tryspace",
+            /* .Basename      = */ "sv",
             /* .Extension     = */ ".ds",
 
             /* .FileNameType  = */ DS_BY_TIME,

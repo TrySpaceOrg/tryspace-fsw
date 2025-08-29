@@ -28,8 +28,10 @@ list(APPEND MISSION_GLOBAL_APPLIST
     #
     # cFS Apps
     #
+        cf
         ci_lab
         ds
+        fm
         lc
         sc
         sch
@@ -45,6 +47,7 @@ list(APPEND MISSION_GLOBAL_APPLIST
 
 # Create Application Platform Include List
 FOREACH(X ${MISSION_GLOBAL_APPLIST})
+    LIST(APPEND APPLICATION_PLATFORM_INC_LIST ${${X}_MISSION_DIR}/config)    
     LIST(APPEND APPLICATION_PLATFORM_INC_LIST ${${X}_MISSION_DIR}/fsw/inc)
     LIST(APPEND APPLICATION_PLATFORM_INC_LIST ${${X}_MISSION_DIR}/fsw/platform_inc)
     LIST(APPEND APPLICATION_PLATFORM_INC_LIST ${${X}_MISSION_DIR}/inc)

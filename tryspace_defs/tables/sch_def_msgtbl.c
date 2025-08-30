@@ -31,8 +31,8 @@
 #include "sch_tbldefs.h"
 
 #include "cfe_msgids.h"
+#include "cf_msgids.h"
 /* #include "ci_lab_msgids.h" */
-/* #include "to_lab_msgids.h" */
 /* #include "cs_msgids.h"  */
 #include "ds_msgids.h"
 /* #include "fm_msgids.h"  */
@@ -43,6 +43,7 @@
 /* #include "mm_msgids.h"  */
 #include "sc_msgids.h"
 #include "sch_msgids.h"
+/* #include "to_lab_msgids.h" */
 
 /* Components*/
 #include "demo_msgids.h"
@@ -170,10 +171,10 @@ SCH_MessageEntry_t SCH_DefaultMessageTable[SCH_MAX_MESSAGES] =
     /* command ID #24 - MD Wakeup                         */
 /*{ { CFE_MAKE_BIG16(MD_WAKEUP_MID),            CFE_MAKE_BIG16(0xC000), CFE_MAKE_BIG16(0x0001), 0x0000 } }, */
   { { CFE_MAKE_BIG16(SCH_UNUSED_MID) } },
-    /* command ID #25 */
-  { { CFE_MAKE_BIG16(SCH_UNUSED_MID) } },
-    /* command ID #26 */
-  { { CFE_MAKE_BIG16(SCH_UNUSED_MID) } },
+    /* command ID #25 - CF HK */
+{ { CFE_MAKE_BIG16(CF_SEND_HK_MID),           CFE_MAKE_BIG16(0xC000), CFE_MAKE_BIG16(0x0001), 0x0000 } },
+    /* command ID #26 - CF Wakeup */
+{ { CFE_MAKE_BIG16(CF_WAKE_UP_MID),           CFE_MAKE_BIG16(0xC000), CFE_MAKE_BIG16(0x0001), 0x0000 } },
     /* command ID #27 */
   { { CFE_MAKE_BIG16(SCH_UNUSED_MID) } },
     /* command ID #28 */

@@ -7,6 +7,14 @@ FROM tryspaceorg/tryspace-lab:0.0.1
 # Copy built FSW files into the image
 COPY build/exe/cpu1 /app
 
+# Create directories
+RUN mkdir /app/cf/data
+RUN mkdir /app/cf/tmp
+RUN mkdir /app/cf/fail
+RUN mkdir /app/cf/poll_dir
+RUN mkdir /app/d
+RUN chmod 777 -R /app/*
+
 # Set working directory
 WORKDIR /app
 

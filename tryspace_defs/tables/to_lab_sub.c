@@ -26,10 +26,14 @@
 #include "to_lab_tbl.h"
 #include "cfe_msgids.h"
 
-/*
-** Add the proper include file for the message IDs below
-*/
+/* cFS */
 #include "ci_lab_msgids.h"
+#include "cf_msgids.h"
+#include "ds_msgids.h"
+#include "fm_msgids.h"
+#include "lc_msgids.h"
+#include "sc_msgids.h"
+#include "sch_msgids.h"
 #include "to_lab_msgids.h"
 
 /* Components */
@@ -37,12 +41,8 @@
 #include "eps_msgids.h"
 #include "radio_msgids.h"
 
-TO_LAB_Subs_t TO_LAB_Subs = {.Subs = {/* CFS App Subscriptions */
-    {CFE_SB_MSGID_WRAP_VALUE(CI_LAB_HK_TLM_MID), {0, 0}, 4},
-    {CFE_SB_MSGID_WRAP_VALUE(TO_LAB_HK_TLM_MID), {0, 0}, 4},
-    {CFE_SB_MSGID_WRAP_VALUE(TO_LAB_DATA_TYPES_MID), {0, 0}, 4},
-
-    /* cFE Core subscriptions */
+TO_LAB_Subs_t TO_LAB_Subs = {.Subs = {
+    /* cFE Core */
     {CFE_SB_MSGID_WRAP_VALUE(CFE_ES_HK_TLM_MID), {0, 0}, 4},
     {CFE_SB_MSGID_WRAP_VALUE(CFE_EVS_HK_TLM_MID), {0, 0}, 4},
     {CFE_SB_MSGID_WRAP_VALUE(CFE_SB_HK_TLM_MID), {0, 0}, 4},
@@ -55,6 +55,14 @@ TO_LAB_Subs_t TO_LAB_Subs = {.Subs = {/* CFS App Subscriptions */
     {CFE_SB_MSGID_WRAP_VALUE(CFE_EVS_SHORT_EVENT_MSG_MID), {0, 0}, 32},
     {CFE_SB_MSGID_WRAP_VALUE(CFE_ES_APP_TLM_MID), {0, 0}, 4},
     {CFE_SB_MSGID_WRAP_VALUE(CFE_ES_MEMSTATS_TLM_MID), {0, 0}, 4},
+
+    /* cFS */
+    {CFE_SB_MSGID_WRAP_VALUE(CF_HK_TLM_MID), {0,0}, 4},
+    {CFE_SB_MSGID_WRAP_VALUE(DS_HK_TLM_MID), {0,0}, 4},
+    {CFE_SB_MSGID_WRAP_VALUE(FM_HK_TLM_MID), {0,0}, 4},
+    {CFE_SB_MSGID_WRAP_VALUE(LC_HK_TLM_MID), {0,0}, 4},
+    {CFE_SB_MSGID_WRAP_VALUE(SC_HK_TLM_MID), {0,0}, 4},
+    {CFE_SB_MSGID_WRAP_VALUE(SCH_HK_TLM_MID), {0,0}, 4},
 
     /* Components */
     {CFE_SB_MSGID_WRAP_VALUE(DEMO_HK_TLM_MID), {0, 0}, 4},

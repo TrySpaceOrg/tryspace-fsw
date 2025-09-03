@@ -98,11 +98,11 @@ SCH_ScheduleEntry_t SCH_DefaultScheduleTable[SCH_TABLE_ENTRIES] =
   {  SCH_UNUSED,   0,      0,  0, 0,  SCH_GROUP_NONE},
   
   /* slot #1 */
-  {  SCH_UNUSED,   0,      0,  0, 0,  SCH_GROUP_NONE},
   {  SCH_ENABLED,  SCH_ACTIVITY_SEND_MSG, 30,  6, 40, SCH_GROUP_CFE_HK },   /* Demo HK Request */
   {  SCH_ENABLED,  SCH_ACTIVITY_SEND_MSG, 30, 16, 41, SCH_GROUP_CFE_HK },   /* EPS HK Request */
   {  SCH_ENABLED,  SCH_ACTIVITY_SEND_MSG, 30, 26, 42, SCH_GROUP_CFE_HK },   /* Radio HK Request */
   {  SCH_ENABLED,  SCH_ACTIVITY_SEND_MSG,  1,  0, 43, SCH_GROUP_CFE_HK },   /* Radio Receive Data */
+  {  SCH_ENABLED,  SCH_ACTIVITY_SEND_MSG, 10,  3, 44, SCH_GROUP_CFE_HK },   /* ADCS HK Request */
     
   /* slot #2 */
   {  SCH_UNUSED,   0,      0,  0, 0,  SCH_GROUP_NONE},

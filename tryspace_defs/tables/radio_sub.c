@@ -16,6 +16,7 @@
 #include "sch_msgids.h"
 
 /* Components */
+#include "adcs_msgids.h"
 #include "demo_msgids.h"
 #include "eps_msgids.h"
 #include "radio_msgids.h"
@@ -50,6 +51,7 @@ RADIO_Subs_t RADIO_Subs = {.Subs = {
     {CFE_SB_MSGID_WRAP_VALUE(SCH_HK_TLM_MID), {0,0}, 4},
 
     /* Components */
+    {CFE_SB_MSGID_WRAP_VALUE(ADCS_HK_TLM_MID), {0, 0}, 4},
     {CFE_SB_MSGID_WRAP_VALUE(DEMO_HK_TLM_MID), {0, 0}, 4},
     {CFE_SB_MSGID_WRAP_VALUE(DEMO_DEVICE_TLM_MID), {0, 0}, 4},
     {CFE_SB_MSGID_WRAP_VALUE(EPS_HK_TLM_MID), {0, 0}, 4},

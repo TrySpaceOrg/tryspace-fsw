@@ -4,8 +4,12 @@
 
 FROM tryspaceorg/tryspace-lab:0.0.1
 
-# Copy built FSW files into the image
+# Copy built files into the image
 COPY build/exe/cpu1 /app
+
+# Copy simulith into the image
+COPY build/amd64-tryspace/default_cpu1/simulith/libsimulith.so /usr/lib/libsimulith.so
+RUN ldconfig
 
 # Create directories
 RUN mkdir /app/cf/data

@@ -55,52 +55,47 @@
 /* Custom table structure, modify as needed to add desired commands */
 typedef struct
 {
-    /* 1 - Enable Radio */
+    /* 1 - Set Radio Mode - Duplex */
     SC_RtsEntryHeader_t hdr1;
-    RADIO_NoArgs_cmd_t  cmd1;
+    RADIO_Config_cmd_t  cmd1;
 
     /* 2 - Set Radio Mode - Rx Only */
     SC_RtsEntryHeader_t hdr2;
     RADIO_Config_cmd_t cmd2;
 
-    /* 3 - Reset AP5 */
-    SC_RtsEntryHeader_t hdr3;
-    LC_ResetAPStatsCmd_t cmd3;
-
-} SC_RtsStruct005_t;
+} SC_RtsStruct006_t;
 
 /* Define the union to size the table correctly */
 typedef union
 {
-    SC_RtsStruct005_t rts;
+    SC_RtsStruct006_t rts;
     uint16            buf[SC_RTS_BUFF_SIZE];
-} SC_RtsTable005_t;
+} SC_RtsTable006_t;
 
 /* Helper macro to get size of structure elements */
-#define SC_MEMBER_SIZE(member) (sizeof(((SC_RtsStruct005_t *)0)->member))
+#define SC_MEMBER_SIZE(member) (sizeof(((SC_RtsStruct006_t *)0)->member))
 
 /* Used designated initializers to be verbose, modify as needed/desired */
-SC_RtsTable005_t SC_Rts005 = 
+SC_RtsTable006_t SC_Rts006 = 
 {
-    /* 1 - Enable Radio */
+    /* 1 - Set Radio Mode - Duplex */
     .rts.hdr1.WakeupCount = 1,
-    .rts.cmd1.CmdHeader = CFE_MSG_CMD_HDR_INIT(RADIO_CMD_MID, SC_MEMBER_SIZE(cmd1), RADIO_ENABLE_CC, 0x00),
-    
-    /* 2 - Set Radio Configuration */
-    .rts.hdr2.WakeupCount = 1,
+    .rts.cmd1.CmdHeader = CFE_MSG_CMD_HDR_INIT(RADIO_CMD_MID, SC_MEMBER_SIZE(cmd1), RADIO_CONFIG_CC, 0x00),
+    .rts.cmd1.DeviceCfg.Mode = RADIO_MODE_DUPLEX,
+    .rts.cmd1.DeviceCfg.RxSpeedSetting = 1,
+    .rts.cmd1.DeviceCfg.RxWavelengthSetting = 2,
+    .rts.cmd1.DeviceCfg.TxSpeedSetting = 3,
+    .rts.cmd1.DeviceCfg.TxWavelengthSetting = 4,
+
+    /* 2 - Set Radio Mode - Rx Only */
+    .rts.hdr2.WakeupCount = 480, /* 8 minutes */
     .rts.cmd2.CmdHeader = CFE_MSG_CMD_HDR_INIT(RADIO_CMD_MID, SC_MEMBER_SIZE(cmd2), RADIO_CONFIG_CC, 0x00),
     .rts.cmd2.DeviceCfg.Mode = RADIO_MODE_RX,
     .rts.cmd2.DeviceCfg.RxSpeedSetting = 1,
     .rts.cmd2.DeviceCfg.RxWavelengthSetting = 2,
     .rts.cmd2.DeviceCfg.TxSpeedSetting = 0,
     .rts.cmd2.DeviceCfg.TxWavelengthSetting = 0,
-
-    /* 3 - Reset AP5 */
-    .rts.hdr3.WakeupCount = 1,
-    .rts.cmd3.CommandHeader = CFE_MSG_CMD_HDR_INIT(LC_CMD_MID, SC_MEMBER_SIZE(cmd3), LC_RESET_AP_STATS_CC, 0x00),
-    .rts.cmd3.Payload.APNumber = 5,
-    .rts.cmd3.Payload.Padding = 0x00,
 };
 
 /* Macro for table structure */
-CFE_TBL_FILEDEF(SC_Rts005, SC.RTS_TBL005, Radio Enable RTS_TBL005, sc_rts005.tbl)
+CFE_TBL_FILEDEF(SC_Rts006, SC.RTS_TBL006, Start Pass RTS_TBL006, sc_rts006.tbl)

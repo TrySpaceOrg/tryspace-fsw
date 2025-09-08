@@ -246,19 +246,19 @@ LC_ADTEntry_t LC_ADT[LC_MAX_ACTIONPOINTS] = {
          {/* (WP_0) */
           0, LC_RPN_EQUAL}},
 
-    /* #5 (unused) */
-    {.DefaultState      = LC_APSTATE_NOT_USED,
+    /* #5 - Radio Enable */
+    {.DefaultState      = LC_APSTATE_ACTIVE,
      .MaxPassiveEvents  = 0,
      .MaxPassFailEvents = 0,
      .MaxFailPassEvents = 0,
-     .RTSId             = 0,
-     .MaxFailsBeforeRTS = 0,
+     .RTSId             = 5,
+     .MaxFailsBeforeRTS = 1,
      .EventType         = CFE_EVS_EventType_INFORMATION,
-     .EventID           = 0,
-     .EventText         = {" "},
+     .EventID           = 5,
+     .EventText         = {"Enabling radio"},
      .RPNEquation =
-         {/* (WP_0) */
-          0, LC_RPN_EQUAL}},
+         {/* (WP_5) */
+          5, LC_RPN_EQUAL}},
 
     /* #6 (unused) */
     {.DefaultState      = LC_APSTATE_NOT_USED,

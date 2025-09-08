@@ -37,6 +37,14 @@
 #include "lc_msgdefs.h"
 #include "lc_tbl.h"
 
+/* Component includes */
+#include "radio_msgids.h"
+
+#ifdef __GNUC__
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmissing-braces"
+#endif
+
 /*************************************************************************
 ** Examples
 ** (note that comment delimiters have been changed to '**')
@@ -157,16 +165,16 @@ LC_WDTEntry_t LC_WDT[LC_MAX_WATCHPOINTS] = {
         .ComparisonValue.Unsigned32 = 0,
     },
 
-    /* #5 (unused) */
+    /* #5 - Radio Enable */
     {
-        .DataType                   = LC_DATA_WATCH_NOT_USED,
-        .OperatorID                 = LC_OPER_NONE,
-        .MessageID                  = CFE_SB_MSGID_RESERVED,
-        .WatchpointOffset           = 0,
+        .DataType                   = LC_DATA_WATCH_UBYTE,
+        .OperatorID                 = LC_OPER_NE,
+        .MessageID                  = RADIO_HK_TLM_MID,
+        .WatchpointOffset           = 15,
         .BitMask                    = LC_BITMASK_NONE,
         .CustomFuncArgument         = 0,
         .ResultAgeWhenStale         = 0,
-        .ComparisonValue.Unsigned32 = 0,
+        .ComparisonValue.Unsigned8  = 1,
     },
 
     /* #6 (unused) */
@@ -2208,3 +2216,7 @@ LC_WDTEntry_t LC_WDT[LC_MAX_WATCHPOINTS] = {
         .ResultAgeWhenStale         = 0,
         .ComparisonValue.Unsigned32 = 0,
     }}; /* end LC_DefaultWDT */
+
+#ifdef __GNUC__
+#pragma GCC diagnostic pop
+#endif

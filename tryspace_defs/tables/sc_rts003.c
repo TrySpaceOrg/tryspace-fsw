@@ -44,83 +44,38 @@
 #include "sc_msg.h"          /* defines SC message structures */
 
 /* Specific includes */
-#include "ds_msg.h"
-#include "ds_msgdefs.h"
-#include "ds_msgids.h"
-#include "lc_msg.h"
-#include "lc_msgdefs.h"
-#include "lc_msgids.h"
-#include "sc_msg.h"
-#include "sc_msgdefs.h"
-#include "sc_msgids.h"
-#include "to_lab_msgids.h"
-#include "to_lab_msg.h"
+#include "cfe_es_msgstruct.h"
+#include "cfe_es_msgids.h"
 
 /* Note: Assumes SC_PLATFORM_ENABLE_HEADER_UPDATE is true */
 
 /* Custom table structure, modify as needed to add desired commands */
 typedef struct
 {
-    /* 1 - Enable DS */
+    /* 1 - ES NOOP */
     SC_RtsEntryHeader_t hdr1;
-    DS_AppStateCmd_t cmd1;
-    /* 2 - Enable Debug */
-    SC_RtsEntryHeader_t hdr2;
-    TO_LAB_EnableOutputCmd_t cmd2;
-    /* 3 - Enable LC */
-    SC_RtsEntryHeader_t hdr3;
-    LC_SetLCStateCmd_t cmd3;
-    /* 4 - Enable RTS Group */
-    SC_RtsEntryHeader_t hdr4;
-    SC_EnableRtsGrpCmd_t cmd4;
-    /* 5 - Start RTS #3 () */
-    SC_RtsEntryHeader_t hdr5;
-    SC_StartRtsCmd_t cmd5;
+    CFE_ES_NoopCmd_t    cmd1;
 
-} SC_RtsStruct001_t;
+} SC_RtsStruct003_t;
 
 /* Define the union to size the table correctly */
 typedef union
 {
-    SC_RtsStruct001_t rts;
+    SC_RtsStruct003_t rts;
     uint16            buf[SC_RTS_BUFF_SIZE];
-} SC_RtsTable001_t;
+} SC_RtsTable003_t;
 
 /* Helper macro to get size of structure elements */
-#define SC_MEMBER_SIZE(member) (sizeof(((SC_RtsStruct001_t *)0)->member))
+#define SC_MEMBER_SIZE(member) (sizeof(((SC_RtsStruct003_t *)0)->member))
 
 /* Used designated initializers to be verbose, modify as needed/desired */
-SC_RtsTable001_t SC_Rts001 = 
+SC_RtsTable003_t SC_Rts003 = 
 {
-    /* 1 - Enable DS */
-    .rts.hdr1.WakeupCount = 5,
-    .rts.cmd1.CommandHeader = CFE_MSG_CMD_HDR_INIT(DS_CMD_MID, SC_MEMBER_SIZE(cmd1), DS_SET_APP_STATE_CC, 0x00),
-    .rts.cmd1.Payload.EnableState = 0x0001,
-    .rts.cmd1.Payload.Padding = 0x0000,
+    /* 1 - ES NOOP */
+    .rts.hdr1.WakeupCount = 1,
+    .rts.cmd1.CommandHeader = CFE_MSG_CMD_HDR_INIT(CFE_ES_CMD_MID, SC_MEMBER_SIZE(cmd1), 0x00, 0x00),
 
-    /* 2 - Enable Debug */
-    .rts.hdr2.WakeupCount = 1,
-    .rts.cmd2.CommandHeader = CFE_MSG_CMD_HDR_INIT(TO_LAB_CMD_MID, SC_MEMBER_SIZE(cmd2), TO_LAB_OUTPUT_ENABLE_CC, 0x00),
-    .rts.cmd2.Payload.dest_IP = "tryspace-gsw",
-
-    /* 3 - Enable LC */
-    .rts.hdr3.WakeupCount = 1,
-    .rts.cmd3.CommandHeader = CFE_MSG_CMD_HDR_INIT(LC_CMD_MID, SC_MEMBER_SIZE(cmd3), LC_SET_LC_STATE_CC, 0x00),
-    .rts.cmd3.Payload.NewLCState = LC_STATE_ACTIVE,
-    .rts.cmd3.Payload.Padding = 0x0000,
-
-    /* 4 - Enable RTS Group */
-    .rts.hdr4.WakeupCount = 1,
-    .rts.cmd4.CommandHeader = CFE_MSG_CMD_HDR_INIT(SC_CMD_MID, SC_MEMBER_SIZE(cmd4), SC_ENABLE_RTS_GRP_CC, 0x00),
-    .rts.cmd4.Payload.FirstRtsNum = 0x0001,
-    .rts.cmd4.Payload.LastRtsNum = 0x0008,
-
-    /* 5 - Start RTS #3 (Initialization) */
-    .rts.hdr5.WakeupCount = 1,
-    .rts.cmd5.CommandHeader = CFE_MSG_CMD_HDR_INIT(SC_CMD_MID, SC_MEMBER_SIZE(cmd5), SC_START_RTS_CC, 0x00),
-    .rts.cmd5.Payload.RtsNum = 0x0003,
-    .rts.cmd5.Payload.Padding = 0x0000,
 };
 
 /* Macro for table structure */
-CFE_TBL_FILEDEF(SC_Rts001, SC.RTS_TBL001, SC Example RTS_TBL001, sc_rts001.tbl)
+CFE_TBL_FILEDEF(SC_Rts003, SC.RTS_TBL003, Initialization RTS_TBL003, sc_rts003.tbl)

@@ -96,14 +96,14 @@ SCH_ScheduleEntry_t SCH_DefaultScheduleTable[SCH_TABLE_ENTRIES] =
   {  SCH_UNUSED,   0,      0,  0, 0,  SCH_GROUP_NONE},
   {  SCH_UNUSED,   0,      0,  0, 0,  SCH_GROUP_NONE},
   {  SCH_UNUSED,   0,      0,  0, 0,  SCH_GROUP_NONE},
-  
+
   /* slot #1 */
-  {  SCH_ENABLED,  SCH_ACTIVITY_SEND_MSG, 30,  6, 40, SCH_GROUP_CFE_HK },   /* Demo HK Request */
-  {  SCH_ENABLED,  SCH_ACTIVITY_SEND_MSG, 30, 16, 41, SCH_GROUP_CFE_HK },   /* EPS HK Request */
-  {  SCH_ENABLED,  SCH_ACTIVITY_SEND_MSG, 30, 26, 42, SCH_GROUP_CFE_HK },   /* Radio HK Request */
-  {  SCH_ENABLED,  SCH_ACTIVITY_SEND_MSG,  1,  0, 43, SCH_GROUP_CFE_HK },   /* Radio Receive Data */
-  {  SCH_ENABLED,  SCH_ACTIVITY_SEND_MSG, 10,  3, 44, SCH_GROUP_CFE_HK },   /* ADCS HK Request */
-    
+  {  SCH_ENABLED,  SCH_ACTIVITY_SEND_MSG, 10,  2, 40, SCH_GROUP_CFE_HK },   /* Demo HK Request */
+  {  SCH_ENABLED,  SCH_ACTIVITY_SEND_MSG, 10,  4, 41, SCH_GROUP_CFE_HK },   /* EPS HK Request */
+  {  SCH_ENABLED,  SCH_ACTIVITY_SEND_MSG, 10,  6, 42, SCH_GROUP_CFE_HK },   /* Radio HK Request */
+  {  SCH_UNUSED,   0,      0,  0, 0,  SCH_GROUP_NONE},
+  {  SCH_UNUSED,   0,      0,  0, 0,  SCH_GROUP_NONE},
+
   /* slot #2 */
   {  SCH_UNUSED,   0,      0,  0, 0,  SCH_GROUP_NONE},
   {  SCH_UNUSED,   0,      0,  0, 0,  SCH_GROUP_NONE},
@@ -120,7 +120,7 @@ SCH_ScheduleEntry_t SCH_DefaultScheduleTable[SCH_TABLE_ENTRIES] =
 
   /* slot #4 */
 /*{  SCH_DISABLED, SCH_ACTIVITY_SEND_MSG,  4,  1,  6, SCH_GROUP_CFS_HK }, */  /* CS HK Request */
-  {  SCH_UNUSED,   0,      0,  0, 0,  SCH_GROUP_NONE},
+  {  SCH_ENABLED,  SCH_ACTIVITY_SEND_MSG,  1,  0, 43, SCH_GROUP_CFE_HK },   /* Radio Receive Data */
   {  SCH_UNUSED,   0,      0,  0, 0,  SCH_GROUP_NONE},
   {  SCH_UNUSED,   0,      0,  0, 0,  SCH_GROUP_NONE},
   {  SCH_UNUSED,   0,      0,  0, 0,  SCH_GROUP_NONE},
@@ -164,7 +164,7 @@ SCH_ScheduleEntry_t SCH_DefaultScheduleTable[SCH_TABLE_ENTRIES] =
 
   /* slot #10 */
 /*{  SCH_DISABLED, SCH_ACTIVITY_SEND_MSG,  1,  0, 24, SCH_GROUP_MD_WAKEUP }, */  /* MD Wakeup */
-  {  SCH_UNUSED,   0,      0,  0, 0,  SCH_GROUP_NONE},
+  {  SCH_ENABLED,  SCH_ACTIVITY_SEND_MSG,  1,  0, 44, SCH_GROUP_CFE_HK },   /* ADCS HK Request */
   {  SCH_UNUSED,   0,      0,  0, 0,  SCH_GROUP_NONE},
   {  SCH_UNUSED,   0,      0,  0, 0,  SCH_GROUP_NONE},
   {  SCH_UNUSED,   0,      0,  0, 0,  SCH_GROUP_NONE},

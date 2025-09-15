@@ -852,7 +852,7 @@
 **       Must be defined as an integer value that is greater than
 **       or equal to zero.
 */
-#define CFE_PLATFORM_ES_STARTUP_SYNC_POLL_MSEC 50
+#define CFE_PLATFORM_ES_STARTUP_SYNC_POLL_MSEC 250
 
 /** \cfeescfg Startup script timeout
 **
@@ -870,7 +870,7 @@
 **       Must be defined as an integer value that is greater than
 **       or equal to zero.
 */
-#define CFE_PLATFORM_ES_STARTUP_SCRIPT_TIMEOUT_MSEC 1000
+#define CFE_PLATFORM_ES_STARTUP_SCRIPT_TIMEOUT_MSEC 5000
 
 /********************************************************************************/
 /*

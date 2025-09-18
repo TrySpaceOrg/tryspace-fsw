@@ -6,8 +6,8 @@ export BUILDTYPE ?= debug
 export CFS_APP_PATH = ../comp
 export COVDIR ?= $(BUILDDIR)/amd64-linux/default_cpu1
 export INSTALLPREFIX ?= exe
-export MISSION_DEFS ?= ./tryspace_defs
-export MISSIONCONFIG ?= ./tryspace
+export MISSION_DEFS ?= ../cfg/
+export MISSIONCONFIG ?= ../cfg/tryspace
 export TRYLABDIR ?= $(CURDIR)/..
 
 export BUILD_IMAGE ?= tryspaceorg/tryspace-lab:0.0.1

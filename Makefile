@@ -1,17 +1,23 @@
 # Makefile for TrySpace FSW development
 .PHONY: all build clean debug runtime start stop test
 
+export BUILD_IMAGE ?= tryspaceorg/tryspace-lab:0.0.1
 export BUILDDIR ?= $(CURDIR)/build
 export BUILDTYPE ?= debug
 export CFS_APP_PATH = ../comp
 export COVDIR ?= $(BUILDDIR)/amd64-linux/default_cpu1
 export INSTALLPREFIX ?= exe
-export MISSION_DEFS ?= ../cfg/
-export MISSIONCONFIG ?= ../cfg/tryspace
+export RUNTIME_FSW_IMAGE_NAME ?= tryspace-fsw
 export TRYLABDIR ?= $(CURDIR)/..
 
-export BUILD_IMAGE ?= tryspaceorg/tryspace-lab:0.0.1
-export RUNTIME_FSW_IMAGE_NAME ?= tryspace-fsw
+SPACECRAFT_CFG_DIR := $(CURDIR)/../build/$(SPACECRAFT)/cfg
+ifeq ($(wildcard $(SPACECRAFT_CFG_DIR)),)
+	export MISSION_DEFS ?= ../cfg/
+	export MISSIONCONFIG ?= ../cfg/tryspace
+else
+	export MISSION_DEFS ?= $(SPACECRAFT_CFG_DIR)
+	export MISSIONCONFIG ?= $(SPACECRAFT_CFG_DIR)/tryspace
+endif
 
 # Determine number of parallel jobs to avoid maxing out low-power systems (Raspberry Pi etc.).
 # Use `nproc - 1` but ensure at least 1 job.

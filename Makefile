@@ -34,16 +34,16 @@ endif
 all: build
 
 build:
-	docker run --rm -it -v $(TRYLABDIR):$(TRYLABDIR) --name "tryspace_fsw_build" -w $(CURDIR) --user $(shell id -u):$(shell id -g) --sysctl fs.mqueue.msg_max=10000 --ulimit rtprio=99 --cap-add=sys_nice $(BUILD_IMAGE) make -j$(JOBS) build-fsw
+	docker run --rm -it -v $(TRYLABDIR):$(TRYLABDIR) --name "tryspace_fsw_build" -w $(CURDIR) --user $(shell id -u):$(shell id -g) --sysctl fs.mqueue.msg_max=10000 --ulimit rtprio=99 --cap-add=sys_nice -e BUILDDIR=$(BUILDDIR) $(BUILD_IMAGE) make -j$(JOBS) build-fsw
 
 build-fsw:
 	mkdir -p $(BUILDDIR)
-	cd $(BUILDDIR) && cmake $(PREP_OPTS) ../cfe
+	cd $(BUILDDIR) && cmake $(PREP_OPTS) $(CURDIR)/cfe
 	$(MAKE) --no-print-directory -C $(BUILDDIR) mission-install
 
 build-test:
 	mkdir -p $(BUILDDIR)
-	cd $(BUILDDIR) && cmake $(PREP_OPTS) -DENABLE_UNIT_TESTS=true ../cfe
+	cd $(BUILDDIR) && cmake $(PREP_OPTS) -DENABLE_UNIT_TESTS=true $(CURDIR)/cfe
 	$(MAKE) --no-print-directory -C $(BUILDDIR) mission-install
 	cd $(COVDIR) && ctest --output-on-failure -O ctest.log
 	lcov -c --directory . --output-file $(COVDIR)/coverage.info
@@ -61,7 +61,7 @@ debug:
 
 runtime:
 	$(MAKE) clean build
-	docker build -t $(RUNTIME_FSW_IMAGE_NAME) -f tools/Dockerfile.fsw .
+	cd .. && docker build -t $(RUNTIME_FSW_IMAGE_NAME):$(SPACECRAFT) -f fsw/tools/Dockerfile.fsw --build-arg SPACECRAFT=$(SPACECRAFT) .
 
 start:
 	docker run --rm -it --name "tryspace_fsw_runtime" --sysctl fs.mqueue.msg_max=10000 --ulimit rtprio=99 --cap-add=sys_nice $(RUNTIME_FSW_IMAGE_NAME)
@@ -70,4 +70,4 @@ stop:
 	docker ps --filter name=tryspace-* --filter status=running -aq | xargs docker stop
 
 test:
-	docker run --rm -it -v $(TRYLABDIR):$(TRYLABDIR) --name "tryspace_fsw_build" -w $(CURDIR) --user $(shell id -u):$(shell id -g) --sysctl fs.mqueue.msg_max=10000 --ulimit rtprio=99 --cap-add=sys_nice $(BUILD_IMAGE) make -j$(JOBS) build-test
+	docker run --rm -it -v $(TRYLABDIR):$(TRYLABDIR) --name "tryspace_fsw_build" -w $(CURDIR) --user $(shell id -u):$(shell id -g) --sysctl fs.mqueue.msg_max=10000 --ulimit rtprio=99 --cap-add=sys_nice -e BUILDDIR=$(BUILDDIR) $(BUILD_IMAGE) make -j$(JOBS) build-test

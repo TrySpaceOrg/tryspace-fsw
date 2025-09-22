@@ -10,7 +10,7 @@ export INSTALLPREFIX ?= exe
 export RUNTIME_FSW_IMAGE_NAME ?= tryspace-fsw
 export TRYLABDIR ?= $(CURDIR)/..
 
-SPACECRAFT_CFG_DIR := $(CURDIR)/../build/$(SPACECRAFT)/cfg
+SPACECRAFT_CFG_DIR := ../build/$(MISSION)/$(SPACECRAFT)
 ifeq ($(wildcard $(SPACECRAFT_CFG_DIR)),)
 	export MISSION_DEFS ?= ../cfg/
 	export MISSIONCONFIG ?= ../cfg/tryspace
@@ -40,17 +40,17 @@ endif
 all: build
 
 build:
-	docker run --rm -it -v $(TRYLABDIR):$(TRYLABDIR) --name "tryspace_fsw_build" -w $(CURDIR) --user $(shell id -u):$(shell id -g) --sysctl fs.mqueue.msg_max=10000 --ulimit rtprio=99 --cap-add=sys_nice -e BUILDDIR=$(BUILDDIR) $(BUILD_IMAGE) make -j$(JOBS) build-fsw
+	docker run --rm -it -v $(TRYLABDIR):$(TRYLABDIR) --name "tryspace_fsw_build" -w $(CURDIR) --user $(shell id -u):$(shell id -g) --sysctl fs.mqueue.msg_max=10000 --ulimit rtprio=99 --cap-add=sys_nice -e BUILDDIR=$(BUILDDIR) -e SPACECRAFT=$(SPACECRAFT) $(BUILD_IMAGE) make -j$(JOBS) build-fsw
 
 build-fsw:
-	mkdir -p $(BUILDDIR)
-	cd $(BUILDDIR) && cmake $(PREP_OPTS) $(CURDIR)/cfe
+	mkdir -p $(BUILDDIR) && \
+	cd $(BUILDDIR) && cmake $(PREP_OPTS) $(CURDIR)/cfe && \
 	$(MAKE) --no-print-directory -C $(BUILDDIR) mission-install
 
 build-test:
-	mkdir -p $(BUILDDIR)
-	cd $(BUILDDIR) && cmake $(PREP_OPTS) -DENABLE_UNIT_TESTS=true $(CURDIR)/cfe
-	$(MAKE) --no-print-directory -C $(BUILDDIR) mission-install
+	mkdir -p $(BUILDDIR) && \
+	cd $(BUILDDIR) && cmake $(PREP_OPTS) -DENABLE_UNIT_TESTS=true $(CURDIR)/cfe && \
+	$(MAKE) --no-print-directory -C $(BUILDDIR) mission-install && \
 	cd $(COVDIR) && ctest --output-on-failure -O ctest.log
 	lcov -c --directory . --output-file $(COVDIR)/coverage.info
 	genhtml $(COVDIR)/coverage.info --output-directory $(COVDIR)/report
@@ -76,4 +76,4 @@ stop:
 	docker ps --filter name=tryspace-* --filter status=running -aq | xargs docker stop
 
 test:
-	docker run --rm -it -v $(TRYLABDIR):$(TRYLABDIR) --name "tryspace_fsw_build" -w $(CURDIR) --user $(shell id -u):$(shell id -g) --sysctl fs.mqueue.msg_max=10000 --ulimit rtprio=99 --cap-add=sys_nice -e BUILDDIR=$(BUILDDIR) $(BUILD_IMAGE) make -j$(JOBS) build-test
+	docker run --rm -it -v $(TRYLABDIR):$(TRYLABDIR) --name "tryspace_fsw_build" -w $(CURDIR) --user $(shell id -u):$(shell id -g) --sysctl fs.mqueue.msg_max=10000 --ulimit rtprio=99 --cap-add=sys_nice -e BUILDDIR=$(BUILDDIR) -e SPACECRAFT=$(SPACECRAFT) $(BUILD_IMAGE) make -j$(JOBS) build-test

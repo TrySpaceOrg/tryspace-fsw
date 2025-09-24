@@ -6,12 +6,13 @@ FROM tryspaceorg/tryspace-lab:0.0.1
 
 # Build argument for spacecraft configuration
 ARG SPACECRAFT=sat-1
+ARG MISSION=drm
 
 # Copy built files into the image
-COPY build/${SPACECRAFT}/fsw/exe/cpu1 /app
+COPY build/${MISSION}/${SPACECRAFT}/fsw/exe/cpu1 /app
 
 # Copy simulith into the image
-COPY build/${SPACECRAFT}/sim/libsimulith.so /usr/lib/libsimulith.so
+COPY build/${MISSION}/${SPACECRAFT}/sim/libsimulith.so /usr/lib/libsimulith.so
 RUN ldconfig
 
 # Create directories

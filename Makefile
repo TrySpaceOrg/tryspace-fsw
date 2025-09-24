@@ -7,7 +7,7 @@ export BUILDTYPE ?= debug
 export CFS_APP_PATH = ../comp
 export COVDIR ?= $(BUILDDIR)/amd64-linux/default_cpu1
 export INSTALLPREFIX ?= exe
-export RUNTIME_FSW_IMAGE_NAME ?= tryspace-fsw
+export RUNTIME_FSW_IMAGE_NAME ?= tryspace-fsw-$(MISSION)
 export TRYLABDIR ?= $(CURDIR)/..
 
 SPACECRAFT_CFG_DIR := ../build/$(MISSION)/$(SPACECRAFT)
@@ -67,7 +67,7 @@ debug:
 
 runtime:
 	$(MAKE) clean build
-	cd .. && docker build -t $(RUNTIME_FSW_IMAGE_NAME):$(SPACECRAFT) -f fsw/tools/Dockerfile.fsw --build-arg SPACECRAFT=$(SPACECRAFT) .
+	cd .. && docker build -t $(RUNTIME_FSW_IMAGE_NAME):$(SPACECRAFT) -f fsw/tools/Dockerfile.fsw --build-arg SPACECRAFT=$(SPACECRAFT) --build-arg MISSION=$(MISSION) .
 
 start:
 	docker run --rm -it --name "tryspace_fsw_runtime" --sysctl fs.mqueue.msg_max=10000 --ulimit rtprio=99 --cap-add=sys_nice $(RUNTIME_FSW_IMAGE_NAME)

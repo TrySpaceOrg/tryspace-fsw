@@ -15,8 +15,8 @@ ifeq ($(wildcard $(SPACECRAFT_CFG_DIR)),)
 	export MISSION_DEFS ?= ../cfg/
 	export MISSIONCONFIG ?= ../cfg/tryspace
 else
-	export MISSION_DEFS ?= $(SPACECRAFT_CFG_DIR)
-	export MISSIONCONFIG ?= $(SPACECRAFT_CFG_DIR)/tryspace
+	export MISSION_DEFS ?= $(SPACECRAFT_CFG_DIR)/cfg
+	export MISSIONCONFIG ?= $(SPACECRAFT_CFG_DIR)/cfg/tryspace
 endif
 
 # Determine number of parallel jobs to avoid maxing out low-power systems (Raspberry Pi etc.).

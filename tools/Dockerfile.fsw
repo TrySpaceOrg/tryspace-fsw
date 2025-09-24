@@ -12,7 +12,13 @@ ARG MISSION=drm
 COPY build/${MISSION}/${SPACECRAFT}/fsw/exe/cpu1 /app
 
 # Copy simulith into the image
-COPY build/${MISSION}/${SPACECRAFT}/sim/libsimulith.so /usr/lib/libsimulith.so
+RUN if [ -f "build/${MISSION}/${SPACECRAFT}/sim/libsimulith.so" ]; then \
+        cp build/${MISSION}/${SPACECRAFT}/sim/libsimulith.so /usr/lib/libsimulith.so; \
+    elif [ -f "build/${MISSION}/${SPACECRAFT}/fsw/amd64-tryspace/default_cpu1/simulith/libsimulith.so" ]; then \
+        cp build/${MISSION}/${SPACECRAFT}/fsw/amd64-tryspace/default_cpu1/simulith/libsimulith.so /usr/lib/libsimulith.so; \
+    else \
+        echo "Warning: libsimulith.so not found in expected locations"; \
+    fi
 RUN ldconfig
 
 # Create directories

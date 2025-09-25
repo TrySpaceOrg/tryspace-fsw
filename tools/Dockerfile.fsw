@@ -2,10 +2,25 @@
 # https://github.com/TrySpaceOrg/tryspace-fsw
 #
 
-FROM tryspaceorg/tryspace-lab:0.0.0
+FROM tryspaceorg/tryspace-lab:1.0.0
 
-# Copy built FSW files into the image
-COPY build/exe/cpu1 /app
+# Build argument for spacecraft configuration
+ARG SPACECRAFT=sat-1
+ARG MISSION=drm
+
+# Copy built files into the image
+COPY build/${MISSION}/${SPACECRAFT}/fsw/exe/cpu1 /app
+
+# Copy simulith library
+COPY build/${MISSION}/${SPACECRAFT}/lib/ /usr/lib/
+
+# Create directories
+RUN mkdir /app/cf/data
+RUN mkdir /app/cf/tmp
+RUN mkdir /app/cf/fail
+RUN mkdir /app/cf/poll_dir
+RUN mkdir /app/d
+RUN chmod 777 -R /app/*
 
 # Set working directory
 WORKDIR /app
